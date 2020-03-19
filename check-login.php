@@ -14,14 +14,12 @@
 
     $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
 
-    $sql = "SELECT username, password FROM users WHERE username = :username";
+    $sql = "SELECT username, password FROM user_table WHERE username = :username";
     $cmd = $db->prepare($sql);
     $cmd->bindParam(':username', $username, PDO::PARAM_STR, 50);
     $cmd->execute();
 
     $user = $cmd->fetch();
-
-
     if (!password_verify($password, $user['password'])) {
       header('location:login.php?invalid=true');
       exit();
@@ -34,7 +32,7 @@
       //also store username in a 2nd session variable to display in Navbar
       $_SESSION['username'] = $username;
 
-      //Redirect to the artist list page
+      //Redirect to the home page
       header('location:index.php');
     }
     $db = null;
