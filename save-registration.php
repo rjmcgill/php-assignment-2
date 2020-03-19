@@ -6,6 +6,7 @@
   </head>
   <body>
     <?php
+      
       //Store form inputs in variables
       $username = $_POST['username'];
       $password = $_POST['password'];
@@ -46,10 +47,8 @@
 
           if(!empty($user)) {
             echo 'Username already taken';
+            header("location:register.php?taken=true");
           } else {
-
-
-
           //set up & run insert
           $sql = "INSERT INTO user_table (username, password) VALUES (:username, :password)";
           $cmd = $db->prepare($sql);
@@ -59,14 +58,13 @@
 
           //Disconnect
           $db = null;
+          //redirect to login page
+          header("location:login.php");
           }
         } catch(Execption $e) {
             echo 'Oops! Something broke!';
           }
-        //redirect to artist-list page
-        header("location:login.php");
       }
-
     ?>
   </body>
 </html>

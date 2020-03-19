@@ -1,6 +1,12 @@
 <?php
   $title = "Register";
   require_once("navbar.php");
+
+  if(!empty($_GET['taken'])) {
+    if($_GET['taken'] == true) {
+      echo '<div class="alert alert-danger">Username already taken</div>';
+    }
+  }
 ?>
     <main class="container">
         <h1>Register as a User</h1>
