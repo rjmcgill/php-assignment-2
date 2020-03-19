@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset = "utf-8">
-    <title>Logging Out...</title>
+    <title>Saving User...</title>
   </head>
   <body>
     <?php

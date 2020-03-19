@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset = "utf-8">
-    <title></title>
-  </head>
-  <body>
-    <?php
-      //Connect to the database
-      $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
-
-    ?>
+<?php
+  $title = "Home";
+  require_once("navbar.php");
+?>
+    <h1>This is my home page</h1>
+    <p>Wow what a great placeholder</p>
   </body>
 </html>
