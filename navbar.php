@@ -30,14 +30,13 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="artist-list.php">Artists</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
         </ul>
         <ul class="navbar-nav m1-auto">
           <?php
             //access current session to check if user is authenticated
-            session_start();
-            if(!empty($_SESSION['userId'])) {
+            if(!empty($_SESSION['username'])) {
               echo '<li class="nav-item"><a class-"nav-link" href="#">' . $_SESSION['username'] . '
                     <li class="nav-item">
                       <a class="nav-link" href="logout.php">Logout</a>

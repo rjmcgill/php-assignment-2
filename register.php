@@ -12,7 +12,6 @@
             <fieldset class="form-group">
                 <label for="password" class="col-md-2">Password:</label>
                 <input type="password" name="password" id="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
-                <img id="showHideIcon" src="img/show.png" alt="show/Hide Password" onclick="showHidePassword();">
             </fieldset>
             <fieldset class="form-group">
                 <label for="confirm" class="col-md-2">Confirm Password:</label>
