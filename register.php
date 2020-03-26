@@ -8,9 +8,8 @@
     }
   }
 
-  $editUserId = $_GET['userId'];
-  if(!empty($editUserId)) {
-    $extention = "save-registration.php?userId=" . $editUserId;
+  if(!empty($_GET['userId'])) {
+    $extention = "save-registration.php?userId=" . $_GET['userId'];
   } else {
     $extention = "save-registration.php";
   }
