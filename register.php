@@ -7,10 +7,17 @@
       echo '<div class="alert alert-danger">Username already taken</div>';
     }
   }
+
+  $editUserId = $_GET['userId'];
+  if(!empty($editUserId)) {
+    $extention = "save-registration.php?userId=" . $editUserId;
+  } else {
+    $extention = "save-registration.php";
+  }
 ?>
     <main class="container">
         <h1>Register as a User</h1>
-        <form method="post" action="save-registration.php">
+        <form method="post" action= <?php echo $extention ?>>
             <fieldset class="form-group">
                 <label for="username" class="col-md-2">Username:</label>
                 <input name="username" id="username" required type="email" placeholder="email@email.com" />

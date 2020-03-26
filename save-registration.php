@@ -6,11 +6,14 @@
   </head>
   <body>
     <?php
-      
+
       //Store form inputs in variables
       $username = $_POST['username'];
       $password = $_POST['password'];
       $confirm = $_POST['confirm'];
+      $userId = $_GET['userId'];
+
+
 
       //validate inputs
       $ok = true;
@@ -38,9 +41,10 @@
           $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
 
           //duplicate check before insert
-          $sql = "SELECT * FROM user_table WHERE username = :username";
+          $sql = "SELECT * FROM user_table WHERE username = :username AND WHERE userId = :userId";
           $cmd = $db->prepare($sql);
           $cmd->bindParam(':username', $username, PDO::PARAM_STR, 50);
+          $cmd->bindParam(':userId', $userId, PDO::PARAM_INT);
 
           $cmd->execute();
           $user = $cmd->fetch();
@@ -49,17 +53,25 @@
             echo 'Username already taken';
             header("location:register.php?taken=true");
           } else {
-          //set up & run insert
-          $sql = "INSERT INTO user_table (username, password) VALUES (:username, :password)";
-          $cmd = $db->prepare($sql);
-          $cmd->bindParam(':username', $username, PDO::PARAM_STR, 50);
-          $cmd->bindParam(':password', $password, PDO::PARAM_STR, 255);
-          $cmd->execute();
+            if(empty($userId)) {
+              //set up & run insert
+              $sql = "INSERT INTO user_table (username, password) VALUES (:username, :password)";
+            } else {
+              $sql = "UPDATE user_table SET username = :username, password = :password WHERE userId = :userId";
+            }
 
-          //Disconnect
-          $db = null;
-          //redirect to login page
-          header("location:login.php");
+            $cmd = $db->prepare($sql);
+            $cmd->bindParam(':username', $username, PDO::PARAM_STR, 50);
+            $cmd->bindParam(':password', $password, PDO::PARAM_STR, 255);
+            if(!empty($userId)) {
+              $cmd->bindParam(':userId', $userId, PDO::PARAM_INT);
+            }
+            $cmd->execute();
+
+            //Disconnect
+            $db = null;
+            //redirect to login page
+            header("location:login.php");
           }
         } catch(Execption $e) {
             echo 'Oops! Something broke!';

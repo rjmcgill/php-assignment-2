@@ -26,8 +26,8 @@
         echo '<td>' . $value['userId'] . '</td>';
 
       echo '<td>' . $value['username'] . '</td>';
-      echo '<td><a href="delete-user.php?artistId=' . $value['userId'] . '" class="btn btn-danger" onclick="return confirmDelete()">Delete</td>';
-      echo '<td><a href="edit-user.php?artistId=' . $value['userId'] . '" class="btn btn-success">Edit</td>
+      echo '<td><a href="delete-user.php?userId=' . $value['userId'] . '" class="btn btn-danger" onclick="return confirmDelete()">Delete</td>';
+      echo '<td><a href="register.php?userId=' . $value['userId'] . '" class="btn btn-success">Edit</td>
       </tr>';
 
 
@@ -35,7 +35,10 @@
     }
     echo '</table>';
   } catch(Execption $e) {
-
+    echo "Oops, something went wrong!";
   }
 
 ?>
+
+</body>
+</html>
