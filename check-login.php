@@ -20,12 +20,6 @@
     $cmd->execute();
 
     $user = $cmd->fetch();
-<<<<<<< HEAD
-    //echo $password . " ";
-    //echo $username . " ";
-    //echo $user['password'];
-=======
->>>>>>> 10de1967edd45e8cf94f10a567f6b0d60fe0b473
     if (!password_verify($password, $user['password'])) {
       header('location:login.php?invalid=true');
       exit();
@@ -38,11 +32,7 @@
       //also store username in a 2nd session variable to display in Navbar
       $_SESSION['username'] = $username;
 
-<<<<<<< HEAD
-      //Redirect to the artist list page
-=======
       //Redirect to the home page
->>>>>>> 10de1967edd45e8cf94f10a567f6b0d60fe0b473
       header('location:index.php');
     }
     $db = null;

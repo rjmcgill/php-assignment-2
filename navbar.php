@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="user-list.php">Users</a>
-                    </li>'';
+                    </li>';
             } else {
               echo '<li class="nav-item">
                 <a class="nav-link" href="register.php">Register</a>

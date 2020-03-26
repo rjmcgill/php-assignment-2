@@ -14,7 +14,7 @@ function lightDarkMode() {
     body.appendChild(style);
     image.class = "black";
   } else {
-    style.innerHTML = "body {background-color: #394147;}p {color: white;}h1 {color: white;}label {color: white;}"
+    style.innerHTML = "body {background-color: #394147;} p {color: white;} h1 {color: white;} label {color: white;}"
     image.src = "assets/whiteye.png"
     body.appendChild(style);
     image.class = "white";
