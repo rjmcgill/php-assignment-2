@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  if(empty($_SESSION['username'])) {
+    header("location:login.php");
+  } else {
+    header('location:user-list.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +27,7 @@
     //Disconnect
     $db = null;
     //Redirect back to updated artist-list page
-    header('location:user-list.php');
+
   ?>
 
 </body>
