@@ -1,7 +1,11 @@
 
 <?php
+
   $title = 'User List';
   require_once('navbar.php');
+  if(empty($_SESSION['username'])) {
+    header("location:login.php");
+  }
 
   echo '<h1>Users</h1>';
 

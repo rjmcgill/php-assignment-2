@@ -1,5 +1,9 @@
 <?php
-  $title = "Register";
+  if(!empty($_GET['userId'])) {
+    $title = "Edit a User";
+  } else {
+    $title = "Register a User";
+  }
   $username = ["username"=>""];
 
   require_once("navbar.php");
