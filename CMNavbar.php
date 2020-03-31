@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <!-- Brand -->
-      <a class="navbar-brand" href="index.php">Content Management Site</a>
+      <a class="navbar-brand">Managed Content Site</a>
 
       <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -32,42 +32,23 @@
       <!-- Navbar links -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-          </li>
         </ul>
         <ul class="navbar-nav m1-auto">
           <?php
-            //access current session to check if user is authenticated
-            if(!empty($_SESSION['username'])) {
-              echo '
-                    <li class="nav-item">
-                      <a class="nav-link" href="user-list.php">Admins</a>
-                    </li>
+            $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
+            $sql = "SELECT * FROM websites";
 
-                    <li class="nav-item">
-                      <a class="nav-link" href="create-website.php">Create Website</a>
-                    </li>
+            $cmd = $db->prepare($sql);
+            $cmd->execute();
 
-                    <li class="nav-item">
-                      <a class="nav-link" href="website-list.php">View Websites</a>
-                    </li>
+            $websites = $cmd -> fetchAll();
 
-                    <li class="nav-item">
-                      <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a class-"nav-link" href="#">' . $_SESSION['username'] . '</a>
-                    </li>';
-            } else {
+            foreach($websites as $value) {
               echo '<li class="nav-item">
-                <a class="nav-link" href="register.php">Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
-              </li>';
+                      <a class="nav-link" href="index.php?websiteId=' . $value['websiteId'] .'">' . $value['website_Title'] . '</a>
+                    </li>';
             }
+
            ?>
 
         </ul>

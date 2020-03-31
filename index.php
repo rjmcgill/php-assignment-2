@@ -17,7 +17,7 @@
 
     $websiteInfo = $cmd->fetch();
     $title = $websiteInfo['website_Title'];
-    require_once("navbar.php");
+    require_once("CMNavbar.php");
   }
 
 
