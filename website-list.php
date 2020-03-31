@@ -34,7 +34,7 @@
 
       echo '<tr>';
       echo '<td>' . $value['websiteId'] . '</td>';
-      echo '<td>' . $value['website_Title'] . '</td>';
+      echo '<td><a href="index.php?websiteId=' . $value['websiteId'] . '">' . $value['website_Title'] . '</td>';
       echo '<td>' . $value['website_Content'] . '</td>';
       echo '<td><a href="delete-website.php?websiteId=' . $value['websiteId'] . '" class="btn btn-danger" onclick="return confirmDelete()">Delete</td>';
       echo '<td><a href="create-website.php?websiteId=' . $value['websiteId'] . '" class="btn btn-success">Edit</td>
