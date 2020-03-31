@@ -8,6 +8,7 @@
   //Store form inputs in variables
   $website_Title = $_POST['name'];
   $website_Content = $_POST['content'];
+  $websiteId = $_GET['websiteId'];
 
 
 
@@ -27,10 +28,12 @@
       //connect
       $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
 
+
       //duplicate check before insert
-      $sql = "SELECT * FROM websites WHERE website_Title = :website_Title";
+      $sql = "SELECT * FROM websites WHERE website_Title = :website_Title AND WHERE websiteId = :websiteId";
       $cmd = $db->prepare($sql);
       $cmd->bindParam(':website_Title', $website_Title, PDO::PARAM_STR, 45);
+      $cmd->bindParam(':websiteId', $websiteId, PDO::PARAM_INT);
 
       $cmd->execute();
       $websites = $cmd->fetch();
@@ -40,17 +43,24 @@
         header("location:create-website.php?taken=true");
       } else {
         //set up & run insert
-        $sql = "INSERT INTO websites (website_Title, website_Content) VALUES (:website_Title, :website_Content)";
+        if(empty($websiteId)) {
+          $sql = "INSERT INTO websites (website_Title, website_Content) VALUES (:website_Title, :website_Content)";
+        } else {
+          $sql = "UPDATE websites SET website_Title = :website_Title, website_Content = :website_Content WHERE websiteId = :websiteId";
+        }
 
         $cmd = $db->prepare($sql);
         $cmd->bindParam(':website_Title', $website_Title, PDO::PARAM_STR, 45);
         $cmd->bindParam(':website_Content', $website_Content, PDO::PARAM_STR, 1028);
+        if(!empty($websiteId)) {
+          $cmd->bindParam(':websiteId', $websiteId, PDO::PARAM_INT);
+        }
         $cmd->execute();
 
         //Disconnect
         $db = null;
         //redirect to login page
-        //header("location:index.php");
+        header("location:website-list.php");
       }
     } catch(Execption $e) {
         echo 'Oops! Something broke!';

@@ -58,10 +58,5 @@
            ?>
 
         </ul>
-        <ul>
-          <li>
-            <image src="assets/whiteye.png" alt="Black Eye" onclick="lightDarkMode()" id="lightDarkModeImg" class="white">
-          </li>
-        </ul>
       </div>
     </nav>

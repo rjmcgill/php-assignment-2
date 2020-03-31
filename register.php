@@ -13,6 +13,7 @@
       echo '<div class="alert alert-danger">Username already taken</div>';
     }
   }
+  
   if(!empty($_SESSION['username'])) {
     if(!empty($_GET['userId'])) {
       $userId = $_GET['userId'];

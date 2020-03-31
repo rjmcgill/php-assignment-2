@@ -1,4 +1,12 @@
+<style>
+  td {
+    color: white;
+  }
 
+  th {
+    color: white;
+  }
+</style>
 <?php
 
   $title = 'User List';
