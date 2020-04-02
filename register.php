@@ -13,19 +13,23 @@
       echo '<div class="alert alert-danger">Username already taken</div>';
     }
   }
-  
+
   if(!empty($_SESSION['username'])) {
     if(!empty($_GET['userId'])) {
       $userId = $_GET['userId'];
-      $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
-      $sql = 'SELECT username FROM user_table WHERE userId = :userId;';
-      $cmd = $db->prepare($sql);
-      $cmd->bindParam(':userId', $userId, PDO::PARAM_INT);
-      $cmd->execute();
+      try {
+        $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
+        $sql = 'SELECT username FROM user_table WHERE userId = :userId;';
+        $cmd = $db->prepare($sql);
+        $cmd->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $cmd->execute();
 
-      $username = $cmd->fetch();
-      $db = null;
-      $extention = "save-registration.php?userId=" . $_GET['userId'];
+        $username = $cmd->fetch();
+        $db = null;
+        $extention = "save-registration.php?userId=" . $_GET['userId'];
+      } catch(Exception $e) {
+        header("location:error.php");
+      }
     } else {
       $extention = "save-registration.php";
     }

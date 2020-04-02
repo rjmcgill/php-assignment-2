@@ -22,6 +22,7 @@
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <!-- Brand -->
+      <img src="assets/logo/logo.png" alt="Logo" height=50px width=50px>
       <a class="navbar-brand">Managed Content Site</a>
 
       <!-- Toggler/collapsibe Button -->
@@ -34,19 +35,27 @@
         <ul class="navbar-nav">
         </ul>
         <ul class="navbar-nav m1-auto">
+          <li>
+            <a class="nav-link" href="website-list.php">Admin Side</a>
+          </li>
           <?php
-            $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
-            $sql = "SELECT * FROM websites";
+            try {
+              $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
+              $sql = "SELECT * FROM websites";
 
-            $cmd = $db->prepare($sql);
-            $cmd->execute();
+              $cmd = $db->prepare($sql);
+              $cmd->execute();
 
-            $websites = $cmd -> fetchAll();
+              $websites = $cmd -> fetchAll();
 
-            foreach($websites as $value) {
-              echo '<li class="nav-item">
-                      <a class="nav-link" href="index.php?websiteId=' . $value['websiteId'] .'">' . $value['website_Title'] . '</a>
-                    </li>';
+              foreach($websites as $value) {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?websiteId=' . $value['websiteId'] .'">' . $value['website_Title'] . '</a>
+                      </li>';
+              }
+              $db = null;
+            } catch(Exception $e) {
+              header("location:error.php");
             }
 
            ?>

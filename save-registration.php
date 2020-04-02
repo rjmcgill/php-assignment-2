@@ -74,7 +74,7 @@
             header("location:login.php");
           }
         } catch(Execption $e) {
-            echo 'Oops! Something broke!';
+            header("location:error.php");
           }
       }
     ?>

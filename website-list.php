@@ -14,6 +14,15 @@
   if(empty($_SESSION['username'])) {
     header("location:login.php");
   }
+  if(!empty($_GET['error'])) {
+    if($_GET['error'] == 'missingImg') {
+      echo '<div class="alert alert-danger">You did not upload an image for the logo</div>';
+    }
+
+    if($_GET['error'] == 'type') {
+      echo '<div class="alert alert-danger">Please upload either a jpeg or png file type</div>';
+    }
+  }
 
   echo '<h1>Active Websites</h1>';
 
@@ -24,13 +33,16 @@
     $cmd = $db->prepare($query);
     $cmd->execute();
 
-    $users = $cmd -> fetchAll();
-
-//table-striped
+    $websites = $cmd -> fetchAll();
+    echo '<form action="add-logo.php" method="post" enctype="multipart/form-data">
+          <label for="photo">Add a site logo</label>
+          <input type="file" name="photo" id="photo">
+          <button type="submit" name="submit" class="btn btn-primary">Upload Logo</button>
+          </form>';
+    //table-striped
     echo '<table class="table table-hover"><thread> <th>Website Id</th><th>Website Name</th> <th>Website Content</th></thread>';
 
-    // 5. Use a foreach loop to iterate (cycle) through all the values in the $artists variable.  Inside this loop, use an echo command to display the name of each person.  See https://www.php.net/manual/en/control-structures.foreach.php for details.
-    foreach ($users as $value) {
+    foreach ($websites as $value) {
 
       echo '<tr>';
       echo '<td>' . $value['websiteId'] . '</td>';
@@ -40,11 +52,12 @@
       echo '<td><a href="create-website.php?websiteId=' . $value['websiteId'] . '" class="btn btn-success">Edit</a></td>
       </tr>';
     }
+
     echo '</table>';
     echo '<a href="create-website.php" class="btn btn-primary">Add a Website</a>';
 
   } catch(Execption $e) {
-    echo "Oops, something went wrong!";
+    header("location:error.php");
   }
 ?>
   </body>

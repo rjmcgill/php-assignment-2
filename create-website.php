@@ -17,15 +17,20 @@
   if(!empty($_SESSION['username'])) {
     if(!empty($_GET['websiteId'])) {
       $websiteId = $_GET['websiteId'];
-      $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
-      $sql = 'SELECT * FROM websites WHERE websiteId = :websiteId;';
-      $cmd = $db->prepare($sql);
-      $cmd->bindParam(':websiteId', $websiteId, PDO::PARAM_INT);
-      $cmd->execute();
+      try {
+        $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
+        $sql = 'SELECT * FROM websites WHERE websiteId = :websiteId;';
+        $cmd = $db->prepare($sql);
+        $cmd->bindParam(':websiteId', $websiteId, PDO::PARAM_INT);
+        $cmd->execute();
 
-      $websiteInfo = $cmd->fetch();
-      $db = null;
-      $extention = "save-website.php?websiteId=" . $_GET['websiteId'];
+        $websiteInfo = $cmd->fetch();
+        $db = null;
+        $extention = "save-website.php?websiteId=" . $_GET['websiteId'];
+      } catch(Exception $e) {
+        header("location:error.php");
+      }
+
     } else {
       $extention = "save-website.php";
     }

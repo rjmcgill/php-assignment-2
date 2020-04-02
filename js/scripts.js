@@ -1,5 +1,12 @@
-function confirmDelete() {
-  return confirm('Are you sure you want to delete this?');
+function confirmDelete(which) {
+  if(which === "logo") {
+    return confirm('Are you sure you want to change the logo? If you do, you will have to reupload the previous logo to get it back.');
+  } else {
+    return confirm('Are you sure you want to delete this?');
+  }
+}
+
+function confirmLogoChange() {
 }
 
 function lightDarkMode() {

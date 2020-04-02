@@ -47,7 +47,7 @@
     }
     echo '</table>';
   } catch(Execption $e) {
-    echo "Oops, something went wrong!";
+    header("location:error.php");
   }
 
 ?>

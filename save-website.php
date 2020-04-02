@@ -63,7 +63,7 @@
         header("location:website-list.php");
       }
     } catch(Execption $e) {
-        echo 'Oops! Something broke!';
+        header("location:error.php");
       }
   }
 

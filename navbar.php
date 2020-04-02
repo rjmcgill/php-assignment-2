@@ -22,6 +22,7 @@
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <!-- Brand -->
+      <img src="assets/logo/logo.png" alt="Logo" height=50px width=50px>
       <a class="navbar-brand" href="index.php">Content Management Site</a>
 
       <!-- Toggler/collapsibe Button -->

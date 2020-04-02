@@ -4,20 +4,25 @@
     $title = "Home";
     require_once("navbar.php");
     echo "<div>
-            <h1>This is my home page</h1>
-            <p>Wow what a great placeholder</p>
+            <h1>Welcome to the Back End</h1>
+            <p>Please use the links in the navigation bar to use the website.</p>
           </div>";
   } else {
-    $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
-    $websiteId = $_GET['websiteId'];
-    $sql = 'SELECT * FROM websites WHERE websiteId = :websiteId';
-    $cmd = $db->prepare($sql);
-    $cmd->bindParam(':websiteId', $websiteId, PDO::PARAM_INT);
-    $cmd->execute();
+    try {
+      $db = new PDO('mysql:host=172.31.22.43;dbname=Ryan_J1103749', 'Ryan_J1103749', 'DqwMH5MD1Z');
+      $websiteId = $_GET['websiteId'];
+      $sql = 'SELECT * FROM websites WHERE websiteId = :websiteId';
+      $cmd = $db->prepare($sql);
+      $cmd->bindParam(':websiteId', $websiteId, PDO::PARAM_INT);
+      $cmd->execute();
 
-    $websiteInfo = $cmd->fetch();
-    $title = $websiteInfo['website_Title'];
-    require_once("CMNavbar.php");
+      $websiteInfo = $cmd->fetch();
+      $title = $websiteInfo['website_Title'];
+      require_once("CMNavbar.php");
+      $db = null;
+    } catch(Exception $e) {
+      header("location:error.php");
+    }
   }
 
 
